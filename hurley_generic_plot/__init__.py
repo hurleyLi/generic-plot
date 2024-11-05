@@ -2,8 +2,8 @@
 hurley-generic-plot: Just some generic functions to make plots
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
-from .test import test
+from .clinical import plot_CFB
 
-__all__ = ['test'] 
+__all__ = ['clinical'] 
