@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hurley-generic-plot"
-version = "0.1.0"
+version = "0.1.1"
 description = "Just some generic functions to make plots"
 readme = "README.md"
 authors = [
