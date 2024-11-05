@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hbuilder>=0.7.0"]
+requires = ["hatchling>=0.7.0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -20,4 +20,4 @@ classifiers = [
 
 [project.urls]
 "Homepage" = "https://github.com/hurleyLi/generic-plot"
-"Bug Tracker" = "https://github.com/hurleyLi/generic-plot/issues" 
+"Bug Tracker" = "https://github.com/hurleyLi/generic-plot/issues"
