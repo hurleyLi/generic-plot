@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.lines import Line2D
+import pandas as pd
+import numpy as np
 
 def plot_CFB(
         df_toplot, x_value, y_value, groupby,
@@ -64,8 +66,9 @@ def plot_CFB(
         if stripplot:
            sns.stripplot(
                data = df_toplot, x = x_value, y = y_value, 
-               hue = groupby, palette= palette, dodge= True, # legend = None,
-               linewidth = general_linewidth, ax = ax
+               hue = groupby, palette= palette, dodge= True, legend = None,
+               linewidth = general_linewidth, ax = ax,
+               order = x_order
         )
     
     # add lines that connect mean or median
@@ -166,6 +169,8 @@ def plot_response(
     # Set hue if multiple groupby columns
     if hue is None and len(groupby) > 1:
         hue = groupby[-1]
+    if hue is not None:
+        groupby = groupby + [hue]
     
     # Prepare data
     groups = groupby + [response]
@@ -229,11 +234,13 @@ def plot_response(
     # Add annotations
     for p, count in zip(barplot.patches, counts):
         percentage_value = p.get_height()
-        percentage = (
-            f"{percentage_value * 100:.1f}%" if percent_f == 'long'
-            else f"{percentage_value * 100:.0f}%" if percentage_value > 0
-            else "0%"
-        )
+        if percent_f == 'long':
+            percentage = f"{percentage_value * 100:.1f}%"
+        else:
+            percentage = f"{percentage_value * 100:.0f}%" if percentage_value > 0 else 0
+
+        if percentage_value == 0:
+            percentage = ""
         
         x_pos = p.get_x() + p.get_width() / 2
         
